@@ -131,6 +131,50 @@
 .kdv-definition p{font-size:15px;font-weight:650;line-height:1.9;color:#344d53;margin:12px 0 0}
 .kd-detail-hero:has(.kdv-board) .kd-detail-graphic{border-color:#9bbbc0}
 @media(max-width:700px){.kdv-definition{padding:13px 14px}.kdv-definition p{font-size:13px;line-height:1.8}.kdv-definition-top span:last-child{font-size:10px}.kd-detail-graphic:has(.kdv-board){padding:8px 4px;min-height:180px}.kdv-foot{font-size:10px}.kd-card-graphic:has(.kdv-board){padding:8px 12px}}
+
+/* V6 圖解排版：固定比例與節點文字對齊、手機可切換完整圖／放大閱讀 */
+.kdv-board,.kdv-scroll{min-width:0;max-width:100%}
+.kdv-scroll{width:100%;overflow:visible;position:relative}
+.kdv-svg{max-width:100%;overflow:hidden;shape-rendering:geometricPrecision}
+.kdv-mobile-hint,.kdv-viewbar{display:none}
+.kd-detail-graphic:has(.kdv-board){max-width:100%;overflow:hidden}
+.kd-detail-graphic .kdv-board{width:100%;max-width:760px;margin-inline:auto}
+.kd-detail-graphic .kdv-svg{max-width:100%}
+.kd-card-graphic .kdv-svg{overflow:hidden}
+.kd-detail-notes>div{min-width:0;align-items:flex-start}
+.kd-detail-notes p,.kdv-definition p,.kd-takeaway p{overflow-wrap:anywhere}
+@media(max-width:700px){
+.kd-detail-graphic:has(.kdv-board){display:block;padding:12px 0 9px;min-height:0;overflow:hidden}
+.kd-detail-graphic .kdv-board{width:100%;max-width:100%;gap:9px}
+.kd-detail-graphic .kdv-scroll{display:block;width:100%;max-width:100%;overflow-x:hidden;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#80b9c1 #ecf4f0;-webkit-overflow-scrolling:touch;border-radius:12px;padding:0 4px 7px;touch-action:pan-x pan-y}
+.kd-detail-graphic .kdv-svg{display:block;width:100%;max-width:100%;height:auto;min-width:0;overflow:hidden}
+.kdv-mobile-hint{display:block;text-align:center;margin:3px 9px 0;border-radius:999px;background:#e2f0ed;color:#365e67;padding:8px 10px;font-size:11px;line-height:1.55;font-weight:850}
+.kd-detail-graphic .kdv-foot{font-size:12px;line-height:1.65;margin:4px 12px 0}
+.kd-detail-id{padding-right:24px}
+.kd-detail-id .kd-chip{max-width:100%;white-space:normal}
+.kd-detail-hero h2{font-size:clamp(22px,6.2vw,27px);overflow-wrap:anywhere}
+.kd-v4-large .kd-v4-path{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kd-v4-large .kd-v4-path-arrow{display:none}
+.kd-v4-large .kd-v4-path-cell{min-height:104px;padding:14px 8px}
+.kd-v4-large .kd-v4-path-cell strong{font-size:17px}
+.kd-v4-large .kd-v4-path-cell small{font-size:12px;line-height:1.5}
+.kd-v4-large .kd-v4-sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.kd-v4-large .kd-v4-source{min-height:83px;padding:12px 6px}
+.kd-v4-large .kd-v4-source strong{font-size:15px;letter-spacing:0}
+.kd-v4-large .kd-v4-source small{font-size:12px}
+.kd-v4-large .kd-v4-source:nth-child(5){grid-column:1/-1;max-width:64%;min-width:48%;justify-self:center}
+.kd-v4-large .kd-v4-trio{gap:6px}
+.kd-v4-large .kd-v4-node strong{font-size:15px}
+.kd-v4-large .kd-v4-node small{font-size:11px}
+.kd-v4-large .kd-v4-result{flex-wrap:wrap}
+.kd-detail-graphic:has(.kd-v4-large){padding:14px 10px}
+.kd-detail-graphic .kdv-viewbar{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:4px 11px 0;color:#365960;font-weight:850;font-size:12px}
+.kdv-zoom-btn{font:inherit;font-size:12px;font-weight:850;color:#31565e;border:1.5px solid #80adb2;border-radius:100px;background:#fefcf4;padding:7px 10px;white-space:nowrap;cursor:pointer}
+.kdv-zoom-btn:focus-visible{outline:3px solid #6aaab5;outline-offset:2px}
+.kd-detail-graphic .kdv-board.is-zoomed .kdv-scroll{overflow-x:auto;scrollbar-width:thin;scrollbar-color:#80b9c1 #ecf4f0}
+.kd-detail-graphic .kdv-board.is-zoomed .kdv-svg{width:720px;max-width:none;min-width:720px;height:360px}
+}
+@media(max-width:360px){.kd-detail-body{padding-inline:12px}.kd-detail-hero{padding-inline:12px}.kd-detail-graphic .kdv-board.is-zoomed .kdv-svg{width:680px;min-width:680px;height:340px}}
 </style>
 </head>
 <body>
@@ -485,7 +529,7 @@ dialog.addEventListener('click',e=>{if(e.target===dialog)closeCard()});
   const boxSvg=(x,y,w,h,fill=S.cream,stroke=S.ink,r=15)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" stroke="${stroke}" stroke-width="2"/>`;
   const lineSvg=(x,y,x2,y2,arrow=false,dashed=false)=>`<line x1="${x}" y1="${y}" x2="${x2}" y2="${y2}" stroke="${S.ink}" stroke-width="3" ${dashed?'stroke-dasharray="7 7"':''} ${arrow?'marker-end="url(#kdv-arrow)"':''}/>`;
   const nodeSvg=(x,y,w,h,title,sub,fill=S.sky)=>`${boxSvg(x,y,w,h,fill)}${textAt(x+w/2,y+(sub?h/2: h/2+8),title,20,true)}${sub?textAt(x+w/2,y+h/2+27,sub,13,false):''}`;
-  const svgDiagram=(title,body,footer='')=>`<div class="kdv-board"><svg class="kdv-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-label="${escSvg(title)}"><title>${escSvg(title)}</title><defs><marker id="kdv-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="${S.ink}"/></marker></defs>${body}</svg>${footer?`<div class="kdv-foot">${escSvg(footer)}</div>`:''}</div>`;
+  const svgDiagram=(title,body,footer='')=>`<div class="kdv-board"><div class="kdv-viewbar"><span>完整圖解預覽</span><button type="button" class="kdv-zoom-btn" aria-pressed="false" aria-label="放大閱讀這張圖解">⤢ 放大閱讀</button></div><div class="kdv-scroll" role="region" aria-label="買房知識關係圖" tabindex="0"><svg class="kdv-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-label="${escSvg(title)}"><title>${escSvg(title)}</title><defs><marker id="kdv-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="${S.ink}"/></marker></defs>${body}</svg></div><div class="kdv-mobile-hint">整張圖先看結構；需要看清細節可按「放大閱讀」</div>${footer?`<div class="kdv-foot">${escSvg(footer)}</div>`:''}</div>`;
   const flowSvg=(labels,footer='')=>svgDiagram('依序完成：'+labels.join('、'),labels.map((x,i)=>nodeSvg(20+i*180,122,150,102,x[0],x[1],[S.sky,S.yellow,S.green,S.violet][i%4])+(i<labels.length-1?lineSvg(172+i*180,172,195+i*180,172,true):'')).join(''),footer);
   const rows=(left,right,caption)=>svgDiagram(caption,`${boxSvg(20,20,325,51,S.sky)}${boxSvg(375,20,325,51,S.yellow)}${textAt(182,54,left,22,true)}${textAt(537,54,right,22,true)}${Array.from({length:3},(_,i)=>`${boxSvg(20,90+80*i,325,68,i%2?S.pale:S.cream)}${boxSvg(375,90+80*i,325,68,i%2?S.pale:S.cream)}`).join('')}`);
   const simpleRows=(a,b,title,caption)=>svgDiagram(caption,`${boxSvg(15,20,335,55,S.sky)}${boxSvg(370,20,335,55,S.yellow)}${textAt(182,54,title[0],24,true)}${textAt(538,54,title[1],24,true)}${a.map((x,i)=>textAt(182,113+i*76,x,19,true)).join('')}${b.map((x,i)=>textAt(538,113+i*76,x,19,true)).join('')}`,caption);
@@ -508,8 +552,8 @@ dialog.addEventListener('click',e=>{if(e.target===dialog)closeCard()});
     case 13:body=`${boxSvg(50,28,620,285,S.cream)}${boxSvg(70,50,355,158,S.sky)}${boxSvg(430,50,222,158,S.green)}${boxSvg(70,215,355,77,S.yellow)}${boxSvg(430,215,222,77,S.violet)}${textAt(247,120,'主建物',24,true)}${textAt(247,153,'主要使用空間',16)}${textAt(541,123,'附屬建物',21,true)}${textAt(247,261,'共有部分',22,true)}${textAt(541,261,'車位（核對登記）',18,true)}`;footer='區塊面積是結構示意，不代表各部分實際坪數比例';break;
     case 14:body=`${boxSvg(184,32,360,268,S.cream)}${lineSvg(184,120,544,120)}${lineSvg(184,205,544,205)}${boxSvg(225,67,73,53,S.sky)}${boxSvg(425,67,73,53,S.sky)}${textAt(365,78,'樓層',20,true)}${textAt(365,101,'採光・噪音',14)}${textAt(365,166,'屋況',21,true)}${textAt(365,191,'漏水・管線・設備',14)}${textAt(365,245,'屋齡',21,true)}${textAt(365,275,'維護與修繕紀錄',14)}`;break;
     case 15:body=`${boxSvg(175,31,400,269,S.cream)}<rect x="175" y="31" width="200" height="134" fill="${S.sky}"/><rect x="375" y="31" width="200" height="134" fill="${S.green}"/><rect x="175" y="165" width="200" height="135" fill="${S.yellow}"/><rect x="375" y="165" width="200" height="135" fill="${S.salmon}"/>${lineSvg(375,31,375,300)}${lineSvg(175,165,575,165)}${textAt(265,99,'居住適合',17,true)}${textAt(265,120,'市場性較低',14)}${textAt(470,99,'居住適合',17,true)}${textAt(470,120,'市場性較高',14)}${textAt(265,233,'居住不適',17,true)}${textAt(265,253,'市場性較低',14)}${textAt(470,233,'居住不適',17,true)}${textAt(470,253,'市場性較高',14)}${textAt(370,333,'右：市場流通性較高　上：自住符合度較高',14)}`;footer='四象限是判斷維度，不是預測未來成交機率';break;
-    case 16:body=`${nodeSvg(28,26,204,73,'物況','房屋擔保條件',S.sky)}${nodeSvg(258,26,204,73,'人況','借款人條件',S.yellow)}${nodeSvg(488,26,204,73,'聯徵','信用與負債',S.green)}`;[['估價','標準品'],['職業','收入'],['負債','信用']].forEach((group,i)=>{const x=28+i*230;body+=`${lineSvg(x+102,100,x+102,130,true)}${nodeSvg(x,143,204,65,group[0],group[1],S.cream)}`});body+=textAt(360,297,'0.38 課程的 3 面向 × 2 關卡',20,true);footer='此為教學架構，非每家銀行一致的核貸流程';break;
-    case 17:body=`${textAt(360,32,'成交價與銀行鑑價：同一金額刻度',20,true)}${textAt(35,112,'成交價',18,true,'start')}${boxSvg(145,82,500,45,S.yellow)}${textAt(654,112,'1,500萬',15,true,'end')}${textAt(35,206,'銀行鑑價',18,true,'start')}${boxSvg(145,174,466.7,45,S.sky)}${textAt(654,206,'1,400萬',15,true,'end')}${lineSvg(612,232,645,232,true)}${textAt(365,280,'估價少 100 萬 ≠ 一定少貸 100 萬',20,true)}`;footer='金額為假設範例；貸款差額還受成數、授信與法規影響';break;
+    case 16:{const groups=[["物況","估價","標準品",S.sky],["人況","職業","收入",S.yellow],["聯徵","負債","信用",S.green]];groups.forEach((g,i)=>{const x=20+i*238;body+=nodeSvg(x+9,30,212,74,g[0],"兩道判斷",g[3]);body+=lineSvg(x+115,105,x+115,147);body+=lineSvg(x+52,147,x+174,147);body+=lineSvg(x+52,147,x+52,166,true);body+=lineSvg(x+174,147,x+174,166,true);body+=nodeSvg(x,178,105,66,g[1],"",S.cream);body+=nodeSvg(x+116,178,105,66,g[2],"",S.cream);});body+=textAt(360,304,"0.38 課程：3 個面向 × 每個面向 2 關卡",19,true);footer="物況：估價／標準品；人況：職業／收入；聯徵：負債／信用。此為教學框架";break;}
+    case 17:body=textAt(360,35,"成交價與銀行估價：使用同一金額尺度",20,true)+textAt(35,112,"成交價",18,true,"start")+boxSvg(155,83,470,45,S.yellow)+textAt(620,114,"1,500 萬",16,true,"end")+textAt(35,212,"銀行估價",18,true,"start")+boxSvg(155,183,438.7,45,S.sky)+textAt(590,214,"1,400 萬",16,true,"end")+lineSvg(155,255,625,255)+textAt(155,280,"0",14,false)+textAt(390,280,"750",14,false)+textAt(625,280,"1,500",14,false)+textAt(360,322,"估價少 100 萬，不一定就少貸 100 萬",18,true);footer="單位：萬元；數字是教學假設，實際貸款還須考慮成數及授信條件";break;
     case 18:body=`${nodeSvg(245,15,230,65,'銀行評估物件','依個案審核',S.yellow)}${lineSvg(360,80,360,109)}${lineSvg(202,109,516,109)}${lineSvg(202,109,202,142,true)}${lineSvg(516,109,516,142,true)}${nodeSvg(35,153,315,95,'較常見住宅','用途・產權・流通性',S.sky)}${nodeSvg(368,153,315,95,'較特殊物件','貸款限制可能較多',S.salmon)}${nodeSvg(220,276,285,61,'仍由各銀行個案審核','沒有全行統一標準',S.green)}`;footer='「標準品」是課程教學說法，非法律或銀行共同定義';break;
     case 19:body=`${nodeSvg(15,35,210,75,'職業','工作穩定度',S.sky)}${nodeSvg(255,35,210,75,'收入','可證明性',S.yellow)}${nodeSvg(495,35,210,75,'負債','現有月付',S.green)}`;[120,360,600].forEach(x=>body+=lineSvg(x,111,360,206,true));body+=`${nodeSvg(211,216,298,99,'還款能力綜合判斷','銀行依個人條件評估',S.violet)}`;break;
     case 20:body=`${nodeSvg(25,38,196,89,'聯徵資料','借還款相關資訊',S.sky)}${nodeSvg(261,38,196,89,'負債資料','現有債務負擔',S.yellow)}${nodeSvg(497,38,196,89,'信用紀錄','還款行為',S.green)}`;[123,360,595].forEach(x=>body+=lineSvg(x,128,360,222,true));body+=`${nodeSvg(235,237,250,75,'銀行綜合審核','不是只看一個分數',S.violet)}`;break;
@@ -564,7 +608,7 @@ dialog.addEventListener('click',e=>{if(e.target===dialog)closeCard()});
   document.querySelectorAll('[data-knowledge-stage]').forEach(btn=>btn.addEventListener('click',()=>{stage=btn.dataset.knowledgeStage;chapter='all';document.getElementById('knowledge-chapter').value='all';render()}));
   document.getElementById('knowledge-chapter').addEventListener('change',e=>{chapter=e.target.value;if(chapter!=='all'){stage=String(Math.floor((Number(chapter)-1)/2))}render()});
   search.addEventListener('input',render);
-  dialog.addEventListener('click',e=>{if(e.target===dialog)closeTopic();let jump=e.target.closest('[data-jump]');if(jump)openTopic(Number(jump.dataset.jump));let related=e.target.closest('[data-related]');if(related){closeTopic();if(typeof openCard==='function')openCard(Number(related.dataset.related));}});
+  dialog.addEventListener('click',e=>{let zb=e.target.closest('.kdv-zoom-btn');if(zb){const board=zb.closest('.kdv-board'),on=board.classList.toggle('is-zoomed');zb.setAttribute('aria-pressed',String(on));zb.textContent=on?'⊟ 縮回全圖':'⤢ 放大閱讀';board.querySelector('.kdv-mobile-hint').textContent=on?'← 左右滑動，閱讀整張放大圖 →':'整張圖先看結構；需要看清細節可按「放大閱讀」';board.querySelector('.kdv-scroll').scrollLeft=0;return;}if(e.target===dialog)closeTopic();let jump=e.target.closest('[data-jump]');if(jump)openTopic(Number(jump.dataset.jump));let related=e.target.closest('[data-related]');if(related){closeTopic();if(typeof openCard==='function')openCard(Number(related.dataset.related));}});
   document.getElementById('knowledge-close').addEventListener('click',closeTopic);
   dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');previousFocus?.focus?.()});
   render();
