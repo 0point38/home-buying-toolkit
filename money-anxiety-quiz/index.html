@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#faf7f3" />
+  <meta name="description" content="20 道生活情境題，探索你面對金錢時最習慣的自我保護方式。教育性自我探索測驗，非臨床診斷。" />
+  <title>你的金錢焦慮，藏著哪種人格？｜金錢信念探索室</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="你的金錢焦慮，藏著哪種人格？｜金錢信念探索室" />
+  <meta property="og:description" content="20 道生活情境題，探索帳單鴕鳥、賺錢跑者、比較孔雀或存款倉鼠，找出你的金錢信念屬性。" />
+  <meta property="og:url" content="https://0point38.github.io/home-buying-toolkit/money-anxiety-quiz/" />
+  <style>
+    :root {
+      --bg:#faf7f3; --paper:#fffdfb; --ink:#403536; --muted:#726569;
+      --rose:#9a5c6a; --rose-hover:#854959; --blush:#f4e5e5; --faint:#fff4f2;
+      --gold:#b5957d; --line:#eaddd8; --soft-shadow:0 22px 65px rgba(112,69,79,.09);
+      --radius:26px; --focus:#5a416b;
+    }
+    [data-theme="pink"] {
+      --bg:#fff8f8; --paper:#fffefe; --ink:#47363d; --muted:#75636b;
+      --rose:#a75e7a; --rose-hover:#914766; --blush:#f7e5ee; --faint:#fff0f5;
+      --gold:#c7a092; --line:#ecdce2; --soft-shadow:0 22px 65px rgba(135,74,96,.08);
+    }
+    [data-theme="rose-gold"] {
+      --bg:#f8f4ef; --paper:#fffdf9; --ink:#443a35; --muted:#71665f;
+      --rose:#916270; --rose-hover:#774c5c; --blush:#f0e5df; --faint:#fbf2eb;
+      --gold:#ae866b; --line:#e6d8cf; --soft-shadow:0 22px 65px rgba(118,81,58,.09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,BlinkMacSystemFont,sans-serif; line-height:1.65; }
+    button,a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible,a:focus-visible { outline:3px solid var(--focus); outline-offset:4px; }
+    [hidden] { display:none !important; }
+    .shell { width:min(100% - 40px,1120px); margin-inline:auto; }
+    .top { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 0; }
+    .brand { display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); font-weight:800; letter-spacing:.04em; font-size:14px; }
+    .mark { display:inline-grid; place-items:center; width:30px; height:30px; border-radius:50% 50% 48% 48%; background:var(--blush); color:var(--rose); font-family:serif; font-size:20px; }
+    .top-right { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .quiet { color:var(--muted); font-size:12px; letter-spacing:.04em; }
+    .themes { display:flex; gap:5px; padding:5px; border:1px solid var(--line); border-radius:999px; background:var(--paper); }
+    .theme { border:1px solid transparent; background:transparent; color:var(--muted); border-radius:999px; min-height:35px; padding:4px 11px; font-size:12px; }
+    .theme[aria-pressed="true"] { background:var(--blush); color:var(--ink); border-color:var(--line); font-weight:700; }
+    .mini-kicker { color:var(--rose); font-size:12px; letter-spacing:.18em; font-weight:800; }
+    .hero { margin-top:12px; padding:clamp(30px,6vw,72px); border-radius:34px; background:var(--paper); border:1px solid var(--line); box-shadow:var(--soft-shadow); display:grid; grid-template-columns:1.12fr .88fr; align-items:center; gap:40px; min-height:510px; overflow:hidden; position:relative; }
+    .hero:before {content:"";position:absolute;width:340px;height:340px;right:-145px;top:-170px;background:var(--faint);border-radius:50%;pointer-events:none;}
+    h1 { font-size:clamp(35px,4.1vw,59px); line-height:1.28; margin:14px 0 18px; letter-spacing:-.04em; font-weight:850; }
+    h1 em { color:var(--rose); font-style:normal; }
+    .intro { font-size:clamp(15px,1.5vw,17px); line-height:1.95; color:var(--muted); max-width:530px; }
+    .meta { display:flex; gap:10px; flex-wrap:wrap; margin:23px 0 27px; }
+    .pill { border:1px solid var(--line); background:var(--faint); color:var(--muted); padding:6px 12px; border-radius:999px; font-size:12px; font-weight:600; }
+    .btn { border:0; background:var(--rose); color:#fff; min-height:54px; padding:13px 26px; border-radius:16px; font-weight:800; letter-spacing:.02em; display:inline-flex; align-items:center; justify-content:center; gap:9px; text-decoration:none; transition:transform .15s,background .15s; }
+    .btn:hover { background:var(--rose-hover); transform:translateY(-1px); }
+    .btn:disabled { opacity:.48; cursor:not-allowed; transform:none; }
+    .btn-secondary { background:transparent; color:var(--ink); border:1px solid var(--line); }
+    .btn-secondary:hover { background:var(--blush); }
+    .art { min-height:350px; display:grid; place-items:center; position:relative; }
+    .art-ring { width:min(100%,355px); aspect-ratio:1; background:radial-gradient(circle at 47% 39%,var(--faint) 0 33%,var(--blush) 34% 58%,transparent 59%); border-radius:50%; display:grid; place-items:center; position:relative; }
+    .art-ring:before,.art-ring:after { content:"✳"; position:absolute; color:var(--gold); font-size:26px; }
+    .art-ring:before { top:23px;left:28px; } .art-ring:after { bottom:36px;right:23px;font-size:17px; }
+    .art-card { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; transform:rotate(-5deg); background:var(--paper); width:215px; min-height:245px; padding:23px; border-radius:25px; border:1px solid var(--line); box-shadow:0 17px 36px rgba(105,62,77,.1); }
+    .art-symbol { font-size:64px; line-height:1.3; margin:6px 0 16px; }
+    .art-card strong { color:var(--rose); font-size:20px; letter-spacing:.07em; }
+    .art-card small { color:var(--muted); margin-top:10px; line-height:1.7; font-size:12px; }
+    .under-hero { padding:21px 8px; font-size:13px; color:var(--muted); text-align:center; }
+    .quiz-layout { display:grid; grid-template-columns:minmax(0,1fr) 265px; gap:24px; margin:16px auto 50px; }
+    .quiz-panel { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:clamp(24px,4vw,50px); box-shadow:var(--soft-shadow); min-height:550px; }
+    .q-top { display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:13px; color:var(--muted); }
+    .q-top strong { color:var(--rose); }
+    .track { width:100%; height:7px; border-radius:999px; overflow:hidden; background:var(--blush); margin:15px 0 36px; }
+    .fill { height:100%; width:0; background:linear-gradient(90deg,var(--gold),var(--rose)); border-radius:inherit; transition:width .2s ease; }
+    h2 { font-size:clamp(23px,2.7vw,31px); line-height:1.5; margin:12px 0 25px; letter-spacing:-.015em; }
+    .answers { display:grid; gap:11px; }
+    .option { width:100%; background:var(--paper); border:1px solid var(--line); border-radius:16px; min-height:66px; padding:15px 19px; display:flex; align-items:center; gap:14px; text-align:left; color:var(--ink); transition:background .15s,border-color .15s,transform .15s; }
+    .option:hover { background:var(--faint); border-color:var(--gold); }
+    .option[aria-pressed="true"] { background:var(--blush); border:2px solid var(--rose); padding:14px 18px; }
+    .letter { flex:none; display:grid; place-items:center; border:1px solid var(--line); border-radius:11px; min-width:36px;height:36px; font-size:13px; font-weight:800; color:var(--rose); }
+    .option[aria-pressed="true"] .letter { background:var(--rose); border-color:var(--rose); color:white; }
+    .option span:last-child { font-size:15px; line-height:1.6; }
+    .q-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:28px; }
+    .side { border:1px solid var(--line); background:var(--faint); border-radius:var(--radius); padding:25px 23px; align-self:start; }
+    .side h3 { margin:3px 0 15px; font-size:18px; }
+    .side p { color:var(--muted); font-size:14px; line-height:1.9; }
+    .aside-art { margin-top:23px; padding:25px 10px; text-align:center; border:1px dashed var(--gold); border-radius:18px; color:var(--rose); background:var(--paper); }
+    .aside-art span { font-size:40px; }
+    .result-wrap { max-width:820px; margin:25px auto 55px; }
+    .result-card { background:var(--paper); border:1px solid var(--line); box-shadow:var(--soft-shadow); border-radius:30px; padding:clamp(26px,5vw,52px); }
+    .result-head { text-align:center; padding:10px 0 25px; }
+    .result-emoji { background:var(--blush); border-radius:50%; width:100px;height:100px;display:grid;place-items:center;font-size:55px;margin:0 auto 15px; }
+    .result-head h2 { margin:10px 0 11px; font-size:clamp(30px,4vw,43px); }
+    .quote { color:var(--rose); font-size:clamp(16px,2.2vw,20px); font-weight:800; line-height:1.8; }
+    .note { font-size:13px; color:var(--muted); }
+    .rule { height:1px; background:var(--line); margin:27px 0; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .info { background:var(--faint); border:1px solid var(--line); border-radius:18px; padding:19px; }
+    .info h3 { font-size:16px; margin:0 0 8px; }
+    .info p { font-size:14px; line-height:1.85; margin:0; color:var(--muted); }
+    .bars { display:grid; gap:12px; margin-top:15px; }
+    .bar-row { display:grid; grid-template-columns:120px 1fr 24px; gap:8px; align-items:center; font-size:13px; }
+    .bar-track { background:var(--blush); height:10px; border-radius:999px; overflow:hidden; }
+    .bar-track i { display:block; height:100%; background:var(--rose); border-radius:999px; }
+    .cta { background:var(--faint); border:1px solid var(--line); border-radius:22px; padding:27px; margin-top:27px; text-align:center; }
+    .cta h3 { margin:5px 0 8px; font-size:22px; }
+    .cta p { max-width:570px; margin:0 auto 19px; font-size:14px; line-height:1.9; color:var(--muted); }
+    .actions { margin-top:24px; display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; }
+    .footer { border-top:1px solid var(--line); padding:25px 0 38px; display:flex; gap:12px; justify-content:space-between; align-items:center; color:var(--muted); font-size:12px; }
+    .footer a { color:var(--rose); text-decoration:underline; }
+    .visually-hidden { position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap; }
+    @media(max-width:780px) {
+      .shell { width:min(100% - 28px,640px); }
+      .top { align-items:start; padding:17px 0 12px; gap:10px; }
+      .brand { font-size:12px; }
+      .top-right { gap:3px; }
+      .theme { padding:4px 8px; font-size:11px; min-height:34px; }
+      .quiet { display:none; }
+      .hero { grid-template-columns:1fr; padding:32px 25px; gap:10px; min-height:0; border-radius:26px; }
+      .hero .art { min-height:205px; order:-1; }
+      .art-ring { width:195px; } .art-card { width:145px; min-height:153px; padding:12px; border-radius:16px; }
+      .art-symbol { font-size:37px; margin:0 0 4px; } .art-card strong { font-size:14px; } .art-card small { font-size:10px; margin-top:2px; }
+      .hero h1 { font-size:clamp(34px,8vw,48px); }
+      .intro { font-size:15px; }
+      .meta { margin:18px 0 22px; }
+      .hero .btn { width:100%; }
+      .quiz-layout { grid-template-columns:1fr; margin:8px auto 30px; }
+      .quiz-panel { padding:25px 20px 23px; min-height:0; }
+      .side { display:none; }
+      h2 { font-size:23px; margin-top:9px; }
+      .option { min-height:69px; }
+      .option span:last-child { font-size:15px; }
+      .result-wrap { margin:10px auto 28px; }
+      .result-card { border-radius:24px; }
+      .two-col { grid-template-columns:1fr; gap:12px; }
+      .bar-row { grid-template-columns:110px 1fr 20px; }
+      .footer { flex-direction:column; text-align:center; }
+    }
+    @media (max-width:380px) {
+      .shell { width:calc(100% - 22px); }
+      .top { flex-wrap:wrap; }
+      .theme { min-height:32px; }
+      .quiz-panel { padding:22px 16px; }
+      .option { gap:10px; padding:12px; }
+      .option[aria-pressed="true"] { padding:11px; }
+      .letter { width:30px; min-width:30px; height:32px; }
+      .q-footer .btn { padding:11px 15px; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*:before,*:after { transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body data-theme="milk">
+  <header class="shell top">
+    <a class="brand" href="#" id="brandHome" aria-label="回到測驗首頁"><span class="mark" aria-hidden="true">✿</span> 金錢信念探索室</a>
+    <div class="top-right">
+      <span class="quiet">選擇你喜歡的暖色</span>
+      <div class="themes" role="group" aria-label="切換網頁暖色風格">
+        <button class="theme" data-set-theme="milk" aria-pressed="true">奶茶玫瑰</button>
+        <button class="theme" data-set-theme="pink" aria-pressed="false">柔霧粉</button>
+        <button class="theme" data-set-theme="rose-gold" aria-pressed="false">玫瑰金</button>
+      </div>
+    </div>
+  </header>
+  <main class="shell" id="app">
+    <section id="home">
+      <div class="hero">
+        <div>
+          <div class="mini-kicker">MONEY MINDSET QUIZ · 自我探索</div>
+          <h1>你的金錢焦慮，<br /><em>藏著哪種人格？</em></h1>
+          <p class="intro">有些人越焦慮越努力賺錢，有些人越焦慮越不敢花錢。<br>用 20 道生活情境題，溫柔地理解你和金錢的關係。</p>
+          <div class="meta" aria-label="測驗介紹"><span class="pill">✦ 20 道情境題</span><span class="pill">♡ 約 3–5 分鐘</span><span class="pill">✿ 4 種金錢屬性</span></div>
+          <button class="btn" id="start">開始探索我的金錢人格 <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="art" aria-hidden="true"><div class="art-ring"><div class="art-card"><span class="art-symbol">☕</span><strong>慢慢認識自己</strong><small>沒有標準答案<br>也沒有好壞人格</small></div></div></div>
+      </div>
+      <p class="under-hero">不是財務能力評比，也不是心理疾病診斷。只是一場關於金錢信念的小探索。</p>
+    </section>
+    <section id="quiz" hidden aria-labelledby="questionHeading">
+      <div class="quiz-layout">
+        <div class="quiz-panel">
+          <div class="q-top"><strong id="questionCount">第 1 / 20 題</strong><span id="progressText">已完成 0%</span></div>
+          <div class="track" role="progressbar" aria-label="測驗進度" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="progressBar"><div class="fill" id="progressFill"></div></div>
+          <div class="mini-kicker" id="questionCategory">生活情境</div>
+          <h2 id="questionHeading" tabindex="-1"></h2>
+          <div class="answers" id="answers" role="group" aria-labelledby="questionHeading"></div>
+          <div class="q-footer"><button class="btn btn-secondary" id="prev" type="button">← 上一題</button><button class="btn" id="next" type="button" disabled>下一題 →</button></div>
+          <p class="note" style="margin:20px 0 0">請選擇最接近你平常第一個念頭的答案，不必選最理想的理財做法。</p>
+        </div>
+        <aside class="side"><div class="mini-kicker">A GENTLE REMINDER</div><h3>了解自己，不用急著改變。</h3><p>每個人都會用自己的方式尋找安全感。這 20 題沒有對錯，也不代表你是某種固定人格。</p><div class="aside-art" aria-hidden="true"><span>♡</span><div>比起追求完美，<br>更重要的是理解自己。</div></div></aside>
+      </div>
+    </section>
+    <section id="result" hidden aria-live="polite">
+      <div class="result-wrap">
+        <div class="result-card">
+          <div class="result-head"><div class="mini-kicker">YOUR MONEY MINDSET</div><div id="resultIcon" class="result-emoji">🐹</div><div class="note">你最常出現的金錢反應是</div><h2 id="resultName">存款倉鼠型</h2><div class="quote" id="resultQuote"></div><p class="note" id="resultSub" style="margin-top:15px"></p></div>
+          <div class="two-col"><div class="info"><h3>✦ 你的優勢</h3><p id="resultStrength"></p></div><div class="info"><h3>♡ 你可能的盲點</h3><p id="resultBlindspot"></p></div></div>
+          <div class="rule"></div>
+          <h3 style="margin:0">你的四種金錢反應分布</h3><p class="note" style="margin:6px 0 0">各類型的選擇題數，並不是焦慮嚴重度或診斷分數。</p><div class="bars" id="resultBars"></div>
+          <div class="info" style="margin-top:26px"><h3>給現在的你，一個小小練習</h3><p id="resultAdvice"></p></div>
+          <div class="cta"><div class="mini-kicker">把理解變成下一步</div><h3>想和財務教練聊聊嗎？</h3><p>如果你想進一步整理自己的金錢信念與生活財務，可以透過以下連結加入財務教練的 LINE 官方帳號，了解相關學習與諮詢資訊。</p><a href="https://line.me/R/ti/p/@280hqrlv" target="_blank" rel="noopener noreferrer" class="btn">加入財務教練 LINE 官方 ↗</a><p class="note" style="margin:12px auto 0">將開啟 LINE 加好友頁面。是否加入由你自行決定。</p></div>
+          <div class="actions"><button class="btn btn-secondary" id="restart">↺ 再測一次</button><button class="btn btn-secondary" id="copyResult">複製我的測驗結果</button></div>
+          <p class="note" style="margin:27px 0 0">本測驗為教育性自我探索工具，靈感參考金錢腳本的四個構面。分型尚未經心理計量驗證，不能用於診斷焦慮或評估個人的信用與理財能力。若金錢壓力持續影響睡眠、工作或生活，可考慮尋求合適的專業支持。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="shell footer"><span>© 金錢信念探索室 · 免費互動測驗</span><span>以理解取代責備，從金錢關係開始。</span></footer>
+  <script>
+    "use strict";
+    // 屬性代碼：avoid=帳單鴕鳥、earn=賺錢跑者、status=比較孔雀、save=存款倉鼠。
+    // 這是教育用途的原創探索性分類，非正式心理學診斷。
+    const TYPES = {
+      avoid:{name:"帳單鴕鳥型",icon:"🪶",quote:"不是不想處理錢，而是光想到錢就已經很累。",strength:"你懂得適時保護自己的情緒，也可能對人際關係和生活感受很敏銳。",blindspot:"當不安太強烈，你可能會延後查看帳單、負債或收支，讓未知帶來更大的壓力。",advice:"這週找 10 分鐘，只看一項最簡單的財務資訊，例如本月固定開銷。不用立刻解決全部問題，先讓資訊變得可看見。"},
+      earn:{name:"賺錢跑者型",icon:"🏃",quote:"你一直努力往前跑，卻很少問自己：到底多少才算夠？",strength:"有企圖心、執行力，願意想辦法增加資源，積極為未來創造選擇。",blindspot:"你可能把安全感全部寄託在下一次加薪或下一份收入，忽略休息和現在已經擁有的資源。",advice:"寫下你的「足夠數字」：每月必要開銷、緊急預備金目標與理想生活費。讓努力有終點，而不只是一直往前跑。"},
+      status:{name:"比較孔雀型",icon:"🦚",quote:"你想要的可能不只是好東西，還有被看見的價值感。",strength:"你重視成長、生活品質與成就，也常能從外界看見新的可能。",blindspot:"當別人的收入、房子或消費成為標準，你可能為了不落後而花費，或因此忽略自己的真正需求。",advice:"下次看到想買的商品，先問自己：「如果沒有人知道我買了它，我還想要嗎？」把決定拉回自己的價值。"},
+      save:{name:"存款倉鼠型",icon:"🐹",quote:"你很會為未來準備，卻可能忘了照顧現在的自己。",strength:"善於規劃、控制風險和累積儲蓄，容易建立穩定的財務秩序。",blindspot:"即使客觀上負擔得起，仍可能對支出過度警戒，難以享受合理的生活花費。",advice:"試著設定一筆「安心花費預算」，只要在額度內就不需要事後反覆責備自己。練習讓金錢也服務現在的生活。"}
+    };
+    const questions = [
+      {cat:"日常花錢與消費", q:"每個月領到薪水時，你最常出現的想法是？", a:[["不太想細算餘額，怕看完更煩惱。","avoid"],["這樣還不夠，得想辦法再多賺一點。","earn"],["終於可以買點好東西，讓自己更有成就感。","status"],["先存起來，看到錢減少會不安心。","save"]]},
+      {cat:"日常花錢與消費", q:"朋友邀請你去一間比較貴的餐廳，你會？", a:[["即使付得起，也會覺得這筆錢應該存起來。","save"],["不想讓大家覺得我跟不上他們的生活。","status"],["想找理由避開，省得面對花費問題。","avoid"],["希望自己再多賺一點，就不必在意價格。","earn"]]},
+      {cat:"日常花錢與消費", q:"發現自己的存款增加時，你的反應是？", a:[["還不夠，我得繼續努力賺錢。","earn"],["不太想細看，想到金錢問題就覺得有壓力。","avoid"],["很開心，但還是不太敢動用。","save"],["好奇自己的存款和同齡人相比算不算多。","status"]]},
+      {cat:"日常花錢與消費", q:"突然需要花一筆錢修理家電時，你會？", a:[["擔心原本期待的生活品質受到影響。","status"],["心疼好不容易累積的存款變少。","save"],["想趕快增加收入，把這筆錢賺回來。","earn"],["因為不想面對支出，可能拖延處理。","avoid"]]},
+      {cat:"收入、工作與賺錢", q:"當你有機會爭取加薪時，你會？", a:[["不太敢開口，覺得談錢有些尷尬。","avoid"],["在意調薪後是否比同事更有競爭力。","status"],["希望把增加的薪水先存起來。","save"],["覺得加薪很好，但還想爭取更高收入。","earn"]]},
+      {cat:"收入、工作與賺錢", q:"看到朋友開始經營副業，賺到額外收入時？", a:[["我也應該趕快找機會增加收入。","earn"],["會先考慮風險，避免損失原本存款。","save"],["不太想關注，因為這話題會帶來壓力。","avoid"],["容易覺得自己的收入是不是輸給別人。","status"]]},
+      {cat:"收入、工作與賺錢", q:"當工作已經很累，你最可能怎麼想？", a:[["不敢減少工作，怕存款累積得太慢。","save"],["再努力一下，多賺一點之後才能休息。","earn"],["很難接受收入比同儕低的工作選擇。","status"],["暫時不想思考薪水和未來，壓力太大。","avoid"]]},
+      {cat:"收入、工作與賺錢", q:"當需要和別人討論薪水時？", a:[["我希望自己的收入能證明我的能力。","status"],["我覺得談錢容易傷感情，寧可不談。","avoid"],["我想爭取更高薪水，才能解決更多煩惱。","earn"],["我比較在意薪水是否穩定、有沒有保障。","save"]]},
+      {cat:"貸款與財務決策", q:"當你考慮使用分期付款時？", a:[["覺得未來可以透過增加收入來負擔。","earn"],["不希望因為預算限制而跟不上別人的生活。","status"],["就算有免息分期，也不太喜歡欠錢。","save"],["不想仔細計算總成本，想到就覺得有壓力。","avoid"]]},
+      {cat:"貸款與財務決策", q:"看到一個很想買、但價格不低的商品時？", a:[["即使已經存夠錢，也會捨不得花。","save"],["因為不想面對預算問題，可能一直不決定。","avoid"],["覺得擁有它能帶來成就感或認同感。","status"],["想透過增加收入來負擔這筆開銷。","earn"]]},
+      {cat:"貸款與財務決策", q:"當身邊朋友陸續買房時，你會？", a:[["開始覺得自己是不是落後別人了。","status"],["想趕快提高收入，累積更多買房資金。","earn"],["暫時不想研究買房資訊，越看越有壓力。","avoid"],["即使負擔得起，還是很擔心房貸影響未來。","save"]]},
+      {cat:"貸款與財務決策", q:"如果有一天你需要申請貸款，你最在意的是？", a:[["不太想面對複雜條件，可能拖延了解。","avoid"],["擔心未來的還款風險，希望盡量不要欠款。","save"],["如何提高收入，讓自己更快還清貸款。","earn"],["擔心別人知道自己需要貸款，會如何看待自己。","status"]]},
+      {cat:"比較與人際關係", q:"看到朋友在社群分享高級旅遊生活，你會？", a:[["不自覺比較自己的生活是不是比較普通。","status"],["會思考旅遊值不值得花掉這麼多存款。","save"],["可能滑掉這些內容，避免想起財務壓力。","avoid"],["希望未來多賺一些，讓自己有相同的自由。","earn"]]},
+      {cat:"比較與人際關係", q:"當家人向你借錢時，你會？", a:[["希望能賺更多錢，才有能力幫助家人。","earn"],["不知道如何談清楚條件，可能先迴避。","avoid"],["擔心拒絕後，對方會覺得自己不夠大方。","status"],["第一時間擔心會不會影響自己的資金安全。","save"]]},
+      {cat:"比較與人際關係", q:"聽到朋友靠投資賺了一筆錢，你會？", a:[["不太想聽太多，以免增加財務壓力。","avoid"],["覺得自己在財富累積上好像落後了。","status"],["開始研究如何讓自己的資產增加更多。","earn"],["先想到投資可能帶來的虧損與風險。","save"]]},
+      {cat:"比較與人際關係", q:"對你來說，財務成功最接近哪個畫面？", a:[["擁有足夠存款，不必害怕突發意外。","save"],["賺到更多錢，很多人生問題就能解決。","earn"],["我的財務成就能證明自己是一個成功的人。","status"],["不用再被迫處理各種令人煩惱的金錢問題。","avoid"]]},
+      {cat:"未來與安全感", q:"當你想到退休生活時？", a:[["想趁現在多賺錢，未來才能安心。","earn"],["擔心目前累積的存款還是不夠。","save"],["覺得退休規劃太複雜，暫時不想面對。","avoid"],["擔心未來的生活水準比同齡朋友差。","status"]]},
+      {cat:"未來與安全感", q:"當你看到一個新的投資機會時？", a:[["可能先避開，怕自己看不懂。","avoid"],["會反覆考慮最壞的損失情況。","save"],["擔心錯過別人已經把握的賺錢機會。","status"],["覺得這可能是讓自己累積更多財富的機會。","earn"]]},
+      {cat:"未來與安全感", q:"當你最近壓力很大時，哪個反應比較像你？", a:[["想買點好東西，讓自己感到被肯定。","status"],["暫時不看帳戶或帳單，讓自己少煩惱。","avoid"],["把更多時間投入賺錢，感覺比較有掌控感。","earn"],["反覆確認存款餘額，確定自己還是安全的。","save"]]},
+      {cat:"未來與安全感", q:"以下哪一句話，最像你內心對金錢的想法？", a:[["不是不能花，只是未來太難預測。","save"],["別人都做到了，我也不能落後。","status"],["再多賺一點，我就能放心了。","earn"],["錢的問題太難面對，還是晚點再想。","avoid"]]}
+    ];
+    const answers = Array(questions.length).fill(null);
+    let current = 0;
+    const $ = (id)=>document.getElementById(id);
+    const sections = ["home","quiz","result"];
+    function show(which) { sections.forEach(s=>$(s).hidden=s!==which); window.scrollTo({top:0,behavior:"instant"}); }
+    function renderQuestion() {
+      const q=questions[current];
+      $("questionCount").textContent=`第 ${current+1} / ${questions.length} 題`;
+      const done=answers.filter(x=>x!==null).length;
+      $("progressText").textContent=`已完成 ${Math.round(done/questions.length*100)}%`;
+      $("progressFill").style.width=`${done/questions.length*100}%`;
+      $("progressBar").setAttribute("aria-valuenow",String(done));
+      $("questionCategory").textContent=q.cat;
+      $("questionHeading").textContent=q.q;
+      $("answers").replaceChildren(...q.a.map((option,i)=>{
+        const b=document.createElement("button"); b.type="button"; b.className="option";
+        b.setAttribute("aria-pressed",String(answers[current]===i));
+        const letter=document.createElement("span"); letter.className="letter";letter.textContent="ABCD"[i];
+        const label=document.createElement("span");label.textContent=option[0];
+        b.append(letter,label);
+        b.addEventListener("click",()=>{answers[current]=i; renderQuestion(); $("answers").children[i].focus({preventScroll:true});});
+        return b;
+      }));
+      $("prev").disabled=current===0;
+      $("next").disabled=answers[current]===null;
+      $("next").textContent=current===questions.length-1?"查看我的金錢人格 →":"下一題 →";
+    }
+    function next(){ if(answers[current]===null) return; if(current===questions.length-1){finish();return;}current++;renderQuestion();$("questionHeading").focus();}
+    function finish(){
+      if(answers.some(v=>v===null)) return;
+      const count={avoid:0,earn:0,status:0,save:0};
+      questions.forEach((q,i)=>count[q.a[answers[i]][1]]++);
+      const order=["avoid","earn","status","save"];
+      const sorted=[...order].sort((a,b)=>count[b]-count[a]||order.indexOf(a)-order.indexOf(b));
+      const top=count[sorted[0]];
+      const leaders=sorted.filter(k=>count[k]===top);
+      const primary=leaders[0], info=TYPES[primary];
+      const sameTop=leaders.length>1;
+      $("resultIcon").textContent=sameTop?"♡":info.icon;
+      $("resultName").textContent=sameTop?leaders.map(k=>TYPES[k].name.replace("型","")).join(" × ")+"｜並列屬性":info.name;
+      $("resultQuote").textContent=sameTop?"你會依不同情境，使用不只一種方式尋找金錢安全感。":`「${info.quote}」`;
+      $("resultSub").textContent=sameTop?"有多個屬性同票最高，因此保留並列結果，而不強行歸類。":`次要屬性：${TYPES[sorted[1]].name}。你也可能在某些情境中展現這種反應。`;
+      $("resultStrength").textContent=sameTop?leaders.map(k=>TYPES[k].strength).join(" "):info.strength;
+      $("resultBlindspot").textContent=sameTop?leaders.map(k=>TYPES[k].blindspot).join(" "):info.blindspot;
+      $("resultAdvice").textContent=sameTop?leaders.slice(0,2).map(k=>TYPES[k].advice).join(" "):info.advice;
+      $("resultBars").replaceChildren(...sorted.map(k=>{
+        const row=document.createElement("div");row.className="bar-row";
+        const label=document.createElement("span");label.textContent=TYPES[k].name.replace("型","");
+        const track=document.createElement("span");track.className="bar-track";
+        const fill=document.createElement("i");fill.style.width=`${count[k]/20*100}%`;track.append(fill);
+        const num=document.createElement("strong");num.textContent=count[k];
+        row.append(label,track,num);return row;
+      }));
+      show("result");
+    }
+    $("start").addEventListener("click",()=>{show("quiz");renderQuestion();$("questionHeading").focus();});
+    $("prev").addEventListener("click",()=>{if(current>0){current--;renderQuestion();$("questionHeading").focus();}});
+    $("next").addEventListener("click",next);
+    $("restart").addEventListener("click",()=>{answers.fill(null);current=0;show("quiz");renderQuestion();$("questionHeading").focus();});
+    $("brandHome").addEventListener("click",e=>{e.preventDefault();show("home");});
+    $("copyResult").addEventListener("click",async()=>{
+      const text=`我的金錢信念測驗結果：${$("resultName").textContent}\n${$("resultQuote").textContent}\n測驗僅供自我探索。\n一起來測：${location.origin + location.pathname}`;
+      try{await navigator.clipboard.writeText(text);$("copyResult").textContent="已複製 ✓";}
+      catch{window.prompt("複製以下文字",text);}
+    });
+    document.querySelectorAll("[data-set-theme]").forEach(btn=>btn.addEventListener("click",()=>{
+      document.body.dataset.theme=btn.dataset.setTheme;
+      document.querySelectorAll("[data-set-theme]").forEach(b=>b.setAttribute("aria-pressed",String(b===btn)));
+    }));
+    // 電腦鍵盤可用 1–4 選擇，Enter 前往下一題。
+    document.addEventListener("keydown",e=>{
+      if($("quiz").hidden||e.altKey||e.ctrlKey||e.metaKey||["INPUT","TEXTAREA"].includes(document.activeElement.tagName)) return;
+      if(["1","2","3","4"].includes(e.key)){$("answers").children[Number(e.key)-1].click();}
+      else if(e.key==="Enter"&&document.activeElement===document.body){e.preventDefault();next();}
+    });
+  </script>
+</body>
+</html>
